@@ -15,13 +15,14 @@ export default function TopBar({ showNav, setShowNav }) {
   const [quote,setQuote] = useState("")
 
    useEffect(() => {
-     let url =
-       "https://zenquotes.io/api/today";
-     fetch(url)
-       .then((res) => res.json())
-       .then((res) => {
-         setPosts(Array.isArray(res) ? res : [res]);
-       });
+fetch("https://type.fit/api/quotes")
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    setQuote(data[Math.floor(Math.random() * 1643) + 1].text);
+    console.log("Quote"+quote)
+  });
    }, []);
   return (
     <div
@@ -35,6 +36,7 @@ export default function TopBar({ showNav, setShowNav }) {
           onClick={() => setShowNav(!showNav)}
         />
       </div>
+      <h1 className="mx-4 text-sm">{quote}</h1>
       <div className="flex items-center pr-4 md:pr-16">
         <Popover className="relative">
           <Popover.Button className="outline-none mr-5 md:mr-8 cursor-pointer text-gray-700">
