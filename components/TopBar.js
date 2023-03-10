@@ -21,7 +21,6 @@ fetch("https://type.fit/api/quotes")
   })
   .then(function(data) {
     setQuote(data[Math.floor(Math.random() * 1643) + 1].text);
-    console.log("Quote"+quote)
   });
    }, []);
   return (
@@ -36,7 +35,9 @@ fetch("https://type.fit/api/quotes")
           onClick={() => setShowNav(!showNav)}
         />
       </div>
-      <h1 className="mx-4 text-sm">{quote}</h1>
+      <div className="">
+        <h1 className="hidden mx-4 text-xs italic md:block">" {quote} "</h1>
+      </div>
       <div className="flex items-center pr-4 md:pr-16">
         <Popover className="relative">
           <Popover.Button className="outline-none mr-5 md:mr-8 cursor-pointer text-gray-700">
